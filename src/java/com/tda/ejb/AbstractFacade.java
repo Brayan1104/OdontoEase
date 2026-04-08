@@ -8,10 +8,7 @@ package com.tda.ejb;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author Tec312
- */
+
 public abstract class AbstractFacade<T> {
 
     private Class<T> entityClass;
