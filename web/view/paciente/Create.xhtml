@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Crear Paciente"/>
+        </ui:define>
+
+        <ui:define name="body">
+
+            <div class="container mt-5">
+
+                <div class=" card shadow">
+                    <div class="row card-header bg-primary text-white">
+                        <div class="col-md-9">
+                            <h4>Registro de Pacientes</h4>
+                        </div>
+                        <div class="col">
+                            <h:link outcome="/index"
+                                value="Inicio"
+                                styleClass="btn btn-dark ms-2"/>
+                        </div>                          
+                        
+                    </div>
+
+                    <div class="card-body">
+
+                        <!-- Mensajes -->
+                        <h:panelGroup id="messagePanel">
+                            <h:messages styleClass="alert alert-info"/>
+                        </h:panelGroup>
+
+                        <h:form>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Documento</label>
+                                    <h:inputText styleClass="form-control"
+                                                 value="#{pacienteController.selected.documento}"
+                                                 required="true"/>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Nombre</label>
+                                    <h:inputText styleClass="form-control"
+                                                 value="#{pacienteController.selected.nombre}"
+                                                 required="true"/>
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-3">
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Apellido</label>
+                                    <h:inputText styleClass="form-control"
+                                                 value="#{pacienteController.selected.apellido}"
+                                                 required="true"/>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Teléfono</label>
+                                    <h:inputText styleClass="form-control"
+                                                 value="#{pacienteController.selected.telefono}"/>
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-3">
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <h:inputText styleClass="form-control"
+                                                 value="#{pacienteController.selected.email}"/>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Dirección</label>
+                                    <h:inputText styleClass="form-control"
+                                                 value="#{pacienteController.selected.direccion}"/>
+                                </div>
+
+                            </div>
+
+                            <div class="mt-4">
+
+                                <h:commandButton value="Guardar"
+                                                 action="#{pacienteController.create}"
+                                                 styleClass="btn btn-success"/>
+
+                                <h:commandButton value="Ver Pacientes"
+                                                 action="#{pacienteController.prepareList}"
+                                                 immediate="true"
+                                                 styleClass="btn btn-secondary ms-2"/>
+
+                            </div>
+
+                        </h:form>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </ui:define>
+
+    </ui:composition>
+</html>
