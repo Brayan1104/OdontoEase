@@ -17,37 +17,57 @@
         <main class="home-container mt-3">
 
             <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <section class="home-title">
-                            <h1 class="text-primary-emphasis text-center text-black d-block "> Bienvenido a OdontoEase </h1>
-                            <p class="text-secondary-emphasis text-center text-black fs-3"> ¿Que deseas hacer hoy? </p>
-                        </section>
+                <div class="row align-items-center" style="min-height: 400px;">
+
+                    <!-- IMAGEN -->
+                    <div class="col-md-6 text-center">
+                        <h:graphicImage library="img"
+                                        name="heroimg.png"
+                                        style="height:350px;" />
+                    </div>
+
+                    <!-- TEXTO -->
+                    <div class="col-md-6 text-center">
+
+                        <h1 class="text-primary-emphasis text-black">
+                            Bienvenido a OdontoEase
+                        </h1>
+
+                        <p class="text-secondary-emphasis text-black fs-3">
+                            ¿Qué deseas hacer hoy?
+                        </p>
+
                     </div>
 
                 </div>
+                <!-- MENU -->
                 <div class="row mt-5">
                     <section>
                         <nav class="navbar justify-content-center navbar-expand-lg bg-body-tertiary">
                             <ul class="nav justify-content-center">
                                 <li class="nav-item">
-                                    <h:link class="nav-link active fs-4 "  outcome="/view/cita/List" value="Citas"/>
+                                    <h:link class="nav-link active fs-4"
+                                            outcome="/view/cita/List"
+                                            value="Citas"/>
                                 </li>
                                 <li class="nav-item">
-                                    <h:link class="nav-link fs-4 " outcome="/view/paciente/List" value="Paceinte"/>
+                                    <h:link class="nav-link fs-4"
+                                            outcome="/view/paciente/List"
+                                            value="Pacientes"/>
                                 </li>
                                 <li class="nav-item">
-                                    <h:link class="nav-link fs-4 " outcome="/view/pago/List" value="Pagos"/>
+                                    <h:link class="nav-link fs-4"
+                                            outcome="/view/pago/List"
+                                            value="Pagos"/>
                                 </li>
                             </ul>
                         </nav>
                     </section>
                 </div>
+
             </div>
 
-
-
-        </main> 
+        </main>
 
     </h:body>
 

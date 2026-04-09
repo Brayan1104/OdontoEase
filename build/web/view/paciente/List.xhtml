@@ -4,91 +4,121 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+    
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ListPacienteTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListPacienteEmpty}" rendered="#{pacienteController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{pacienteController.items.rowCount > 0}">
-                    <h:outputText value="#{pacienteController.pagination.pageFirstItem + 1}..#{pacienteController.pagination.pageLastItem + 1}/#{pacienteController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{pacienteController.previous}" value="#{bundle.Previous} #{pacienteController.pagination.pageSize}" rendered="#{pacienteController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{pacienteController.next}" value="#{bundle.Next} #{pacienteController.pagination.pageSize}" rendered="#{pacienteController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{pacienteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPacienteTitle_idPaciente}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idPaciente}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPacienteTitle_documento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.documento}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPacienteTitle_nombre}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPacienteTitle_apellido}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.apellido}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPacienteTitle_telefono}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.telefono}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPacienteTitle_email}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.email}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPacienteTitle_direccion}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.direccion}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPacienteTitle_fechaRegistro}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaRegistro}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{pacienteController.prepareView}" value="#{bundle.ListPacienteViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{pacienteController.prepareEdit}" value="#{bundle.ListPacienteEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{pacienteController.destroy}" value="#{bundle.ListPacienteDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{pacienteController.prepareCreate}" value="#{bundle.ListPacienteCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListPacienteIndexLink}"/>
-            </h:form>
-        </ui:define>
-    </ui:composition>
 
+        <div  class="row text-center mt-10">
+            <ui:define name="title">
+                <h:outputText value="Lista de Pacientes"/>
+            </ui:define>
+        </div>
+
+        <ui:define name="body">
+
+            <div class="container mt-5">
+
+                <div class="card shadow">
+
+                    <h:form>
+
+                        <!-- HEADER -->
+                        <div class="card-header bg-primary text-white d-flex justify-content-between">
+                            <h4>Pacientes</h4>
+
+                            <h:commandLink action="#{pacienteController.prepareCreate}"
+                                           styleClass="btn btn-light btn-sm"
+                                           value="Nuevo Paciente"/>
+                        </div>
+
+                        <div class="card-body">
+
+                            <!-- MENSAJES -->
+                            <h:messages styleClass="alert alert-info"/>
+
+                            <!-- TABLA -->
+                            <div class="table-responsive">
+
+                                <h:dataTable value="#{pacienteController.items}" var="item"
+                                             styleClass="table table-striped table-hover">
+
+                                    <h:column>
+                                        <f:facet name="header">ID</f:facet>
+                                            #{item.idPaciente}
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Documento</f:facet>
+                                            #{item.documento}
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Nombre</f:facet>
+                                            #{item.nombre}
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Apellido</f:facet>
+                                            #{item.apellido}
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Teléfono</f:facet>
+                                            #{item.telefono}
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Email</f:facet>
+                                            #{item.email}
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Dirección</f:facet>
+                                            #{item.direccion}
+                                    </h:column>
+
+                                    <h:column>
+                                        <f:facet name="header">Fecha</f:facet>
+                                        <h:outputText value="#{item.fechaRegistro}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+                                        </h:outputText>
+                                    </h:column>
+
+                                    <!-- ACCIONES -->
+                                    <h:column>
+                                        <f:facet name="header">Acciones</f:facet>
+
+                                        <h:commandLink action="#{pacienteController.prepareView}"
+                                                       styleClass="btn btn-info btn-sm me-1"
+                                                       value="Ver"/>
+
+                                        <h:commandLink action="#{pacienteController.prepareEdit}"
+                                                       styleClass="btn btn-warning btn-sm me-1"
+                                                       value="Editar"/>
+
+                                        <h:commandLink action="#{pacienteController.destroy}"
+                                                       styleClass="btn btn-danger btn-sm"
+                                                       value="Eliminar"/>
+                                    </h:column>
+
+                                </h:dataTable>
+
+                            </div>
+
+                        </div>
+
+                    </h:form> 
+                </div>
+
+                <!-- VOLVER -->
+                <div class="mt-3">
+                    <h:link outcome="/index"
+                            value="Volver al inicio"
+                            styleClass="btn btn-secondary"/>
+                </div>
+
+            </div>
+
+        </ui:define>
+
+    </ui:composition>
 </html>
