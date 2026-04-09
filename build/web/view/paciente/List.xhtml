@@ -4,7 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <ui:composition template="/template.xhtml">
 
         <div  class="row text-center mt-10">
@@ -35,6 +35,35 @@
                             <!-- MENSAJES -->
                             <h:messages styleClass="alert alert-info"/>
 
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+
+                                <!-- INFO -->
+                                <div>
+                                    <span class="text-muted">
+                                        #{pacienteController.pagination.pageFirstItem + 1}
+                                        -
+                                        #{pacienteController.pagination.pageLastItem + 1}
+                                        de
+                                        #{pacienteController.pagination.itemsCount}
+                                    </span>
+                                </div>
+
+                                <!-- BOTONES -->
+                                <div>
+
+                                    <h:commandLink action="#{pacienteController.previous}"
+                                                   rendered="#{pacienteController.pagination.hasPreviousPage}"
+                                                   styleClass="btn btn-outline-primary btn-sm me-2"
+                                                   value="Anterior"/>
+
+                                    <h:commandLink action="#{pacienteController.next}"
+                                                   rendered="#{pacienteController.pagination.hasNextPage}"
+                                                   styleClass="btn btn-outline-primary btn-sm"
+                                                   value="Siguiente"/>
+
+                                </div>
+
+                            </div>
                             <!-- TABLA -->
                             <div class="table-responsive">
 
